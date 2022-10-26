@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogames } from '../../redux/actions';
-import AlphaOrder from '../AlphaOrder/Index';
+import OrderVideogames from '../OrderVideogames/Index';
 import Loading from '../Loading/Index';
 import Nav from '../nav/Index.jsx';
 import Page from '../Page/Index';
@@ -20,7 +20,7 @@ export default function Home(){
         <div>
             <Nav/>
             <div>
-                <AlphaOrder videogames={videogames} />
+                <OrderVideogames videogames={videogames} />
             </div>
             <div>
                 <RenderPages videogames={videogames} />

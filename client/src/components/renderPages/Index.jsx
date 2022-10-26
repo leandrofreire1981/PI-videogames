@@ -12,7 +12,7 @@ export default function RenderPages(props){
     let query = new URLSearchParams(location.search)
     let start = parseInt(query.get('inicio')) || 1;
     let end = parseInt(query.get('fin')) || 15;
-    //GAME_PAGE = end - start;
+    
     if (start < 0) history.push('?inicio=1&fin=15');
     
     let renderVideogames = videogames.slice(start-1, end)
@@ -33,7 +33,7 @@ export default function RenderPages(props){
             {start >= GAME_PAGE && <button onClick={prevPage}>Pagina anterior</button>}
             {end < videogames.length && <button onClick={nextPage}>Pagina siguiente</button>}
                 {renderVideogames.length? renderVideogames?.map((res, i) => (
-                    <Page key={i} id={res.id} name={res.name} image={res.image} genres={res.genres} />
+                    <Page key={i} id={res.id} name={res.name} image={res.image} genres={res.genres} rating={res.rating} />
                 )): <Loading />} 
         </div>
     )

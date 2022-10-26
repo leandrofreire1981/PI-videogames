@@ -29,7 +29,8 @@ const getVideogames = async () => {
             id: game.id,
             name: game.name,
             image: game.background_image,
-            genres: game.genres,
+            genres: game.genres.map(genres => genres.name),
+            rating: game.rating,
             created: false
         })
     })   

@@ -6,9 +6,10 @@ export default function Page(props){
         <div>
             <div>
                 {props.name}
+                rating: {props.rating}
                 <br></br>
-                 {props.genres.length && props.genres.map((res, i) => (
-                    <p key={i}>{res.name}</p>
+                 {props.genres.length && props.genres.map((genres, i) => (
+                    <p key={i}>{genres}</p>
                 ))} 
                 <br></br>
                 <img src={props.image} alt='not found' />

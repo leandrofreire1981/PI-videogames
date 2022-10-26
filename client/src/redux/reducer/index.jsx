@@ -12,11 +12,6 @@ export default function rootReducer(state = initialState, action){
             return {
                 ...state, videogames: [...action.payload]
             }
-        
-        case ALPHA_ORDER:
-            return {
-                ...state, videogames: [...action.payload]
-            }
 
         default:
             return state;
