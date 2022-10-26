@@ -12,7 +12,7 @@ export default function Page(props){
                     <p key={i}>{genres}</p>
                 ))} 
                 <br></br>
-                <img src={props.image} alt='not found' />
+               {/*  <img src={props.image} alt='not found' /> */}
             </div>
         </div>
     )

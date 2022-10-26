@@ -1,37 +1,71 @@
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Loading from "../Loading/Index";
 import Page from "../Page/Index";
 
 export default function RenderPages(props){
     const { videogames } = props
     let GAME_PAGE = 15
+    //if(GAME_PAGE = 50) GAME_PAGE = 51
 
     const location = useLocation()
     const history = useHistory()
 
     let query = new URLSearchParams(location.search)
     let start = parseInt(query.get('inicio')) || 1;
-    let end = parseInt(query.get('fin')) || 15;
-    
-    if (start < 0) history.push('?inicio=1&fin=15');
+    let end = parseInt(query.get('fin')) || GAME_PAGE;
+    if (start < 0) history.push(`?inicio=1&fin=${GAME_PAGE}`);
     
     let renderVideogames = videogames.slice(start-1, end)
+    
+    let pageCount = parseInt(videogames.length / GAME_PAGE + 1)
+    let buttonsPages = []
+    
+    for(let i = 0; i < pageCount; i++){
+        buttonsPages.push({
+            inicio: i * GAME_PAGE + 1,
+            fin: i * GAME_PAGE + GAME_PAGE 
+        })
+    }
+ 
+    function goPage(e){
+        let page = (parseInt(query.get('inicio')) - 1) || 0
+        if(page>0)
+            page /= GAME_PAGE
+        let inicio = 0
+        let final = 0
+        switch (e.target.id) {
+            case 'prev':
+                inicio = buttonsPages[page - 1].inicio
+                final = buttonsPages[page - 1].fin 
+                break;
 
-    function prevPage(){
-        history.push({search: `?inicio=${start - GAME_PAGE }&fin=${end - GAME_PAGE}`})
+            case 'next':
+               inicio = buttonsPages[page + 1].inicio
+               final = buttonsPages[page + 1].fin  
+                break;
 
+            default:
+                inicio = buttonsPages[e.target.id].inicio
+                final = buttonsPages[e.target.id].fin 
+                break;
+        }
+        if(final>videogames.length) final=videogames.length
+        history.push({search: `?inicio=${inicio}&fin=${final}`})
     }
 
-    function nextPage(){
-        history.push({search: `?inicio=${start + GAME_PAGE}&fin=${end + GAME_PAGE}`})
-        
-    }
-
+    
     return (
         <div>
-            <h2>Mostrando elementos del {start} al {end}</h2>
-            {start >= GAME_PAGE && <button onClick={prevPage}>Pagina anterior</button>}
-            {end < videogames.length && <button onClick={nextPage}>Pagina siguiente</button>}
+            <h2>Mostrando Juegos del {start} al {end}</h2>
+            {start >= GAME_PAGE && <button id='prev' onClick={goPage}>Pagina anterior</button>}
+
+            {buttonsPages.length && buttonsPages.map((res, i) => (
+                <button key={i} onClick={goPage} id={i}>{i + 1}</button>
+                ))
+            }
+            
+            {end < videogames.length && <button id='next' onClick={goPage}>Pagina siguiente</button>}
+           
                 {renderVideogames.length? renderVideogames?.map((res, i) => (
                     <Page key={i} id={res.id} name={res.name} image={res.image} genres={res.genres} rating={res.rating} />
                 )): <Loading />} 
