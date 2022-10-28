@@ -3,7 +3,7 @@ require('dotenv').config();
 const { apiKey } = process.env;
 
 
-const getVideogames = async () => {
+const getVideogames = async (ban = 'games') => {
     let games = [];
     let videogames = [];
 
@@ -23,21 +23,22 @@ const getVideogames = async () => {
 
 
   
-
-     games.map(game => {
-        videogames.push({
-            id: game.id,
-            name: game.name,
-            image: game.background_image,
-            genres: game.genres.map(genres => genres.name),
-            rating: game.rating,
-            created: false
-        })
-    })   
-
-
-
-   return videogames;
+    if(ban==='platforms'){
+        return games
+    }
+    else {
+        games.map(game => {
+            videogames.push({
+                id: game.id,
+                name: game.name,
+                image: game.background_image,
+                genres: game.genres.map(genres => genres.name),
+                rating: game.rating,
+                created: false
+            })
+        })   
+    }
+    return videogames;
 }
 
 module.exports =  getVideogames;

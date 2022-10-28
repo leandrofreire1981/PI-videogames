@@ -7,6 +7,12 @@ export default function Nav(){
             <Link to='/'>
                 Inicio
             </Link>
+            <Link to='/home'>
+                Home
+            </Link>
+            <Link to='/createGame' >
+                Crear juego
+            </Link>
         </div>
     )
 

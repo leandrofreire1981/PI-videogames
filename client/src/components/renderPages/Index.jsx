@@ -1,26 +1,31 @@
-import { Link, useHistory, useLocation } from "react-router-dom";
+
+import { useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Loading from "../Loading/Index";
 import Page from "../Page/Index";
+
 
 export default function RenderPages(props){
     const { videogames } = props
     let GAME_PAGE = 15
-    //if(GAME_PAGE = 50) GAME_PAGE = 51
-
+    console.log('videogames', videogames.length)
+    
     const location = useLocation()
     const history = useHistory()
-
+    
     let query = new URLSearchParams(location.search)
     let start = parseInt(query.get('inicio')) || 1;
     let end = parseInt(query.get('fin')) || GAME_PAGE;
     if (start < 0) history.push(`?inicio=1&fin=${GAME_PAGE}`);
     
+ 
     let renderVideogames = videogames.slice(start-1, end)
+    console.log('renderpages', renderVideogames)
     
-    let pageCount = parseInt(videogames.length / GAME_PAGE + 1)
+    let pageCount = parseInt(videogames.length / GAME_PAGE)
     let buttonsPages = []
     
-    for(let i = 0; i < pageCount; i++){
+    for(let i = 0; i < pageCount + 1; i++){
         buttonsPages.push({
             inicio: i * GAME_PAGE + 1,
             fin: i * GAME_PAGE + GAME_PAGE 
@@ -59,12 +64,12 @@ export default function RenderPages(props){
             <h2>Mostrando Juegos del {start} al {end}</h2>
             {start >= GAME_PAGE && <button id='prev' onClick={goPage}>Pagina anterior</button>}
 
-            {buttonsPages.length && buttonsPages.map((res, i) => (
+{/*             {buttonsPages.length && buttonsPages.map((res, i) => (
                 <button key={i} onClick={goPage} id={i}>{i + 1}</button>
                 ))
-            }
+            } */}
             
-            {end < videogames.length && <button id='next' onClick={goPage}>Pagina siguiente</button>}
+            {end  < videogames.length && <button id='next' onClick={goPage}>Pagina siguiente</button>}
            
                 {renderVideogames.length? renderVideogames?.map((res, i) => (
                     <Page key={i} id={res.id} name={res.name} image={res.image} genres={res.genres} rating={res.rating} />

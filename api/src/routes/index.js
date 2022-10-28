@@ -5,7 +5,9 @@ const getGenres = require('../controllers/getGenres')
 // Ejemplo: const authRouter = require('./auth.js');
 const getVideogames = require('../controllers/getVideogames');
 const getVideogameById = require('../controllers/getVideogameById');
-const getVideogameByName = require('../controllers/getVideogamesByName')
+const getVideogameByName = require('../controllers/getVideogamesByName');
+const { default: axios } = require('axios');
+const getPlatforms = require('../controllers/getPlatforms');
 
 const router = Router();
 
@@ -13,8 +15,15 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get('/videogames', async (req, res) => {
+    const { name } = req.query;
+    let videogames = null
     try{
-        const videogames = await getVideogames();
+        if(name){
+            videogames = await getVideogameByName(name);
+        }
+        else{
+            videogames = await getVideogames();
+        }
         res.status(200).json(videogames)
     }catch(error) {
         res.status(404).send(error.message)
@@ -31,16 +40,6 @@ router.get('/videogames/:idVideogames', async (req, res) => {
     }
 }) 
 
-router.get('/videogames', async(req, res) => {
-    const { name } = req.query;
-    try {
-        const videogames = await getVideogameByName(name);
-        res.status(200).json(videogames)
-    } catch (error) {
-        res.status(404).send(error.message)
-    }
-})
-
 router.get('/genres', async (req, res) => {
     try {
         const genres = await getGenres()
@@ -50,6 +49,13 @@ router.get('/genres', async (req, res) => {
     }
 })
 
-
+router.get('/platforms', async (req, res) => {
+    try {
+        const platforms = await getPlatforms();
+        res.status(200).json(platforms)
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
+})
 
 module.exports = router;
