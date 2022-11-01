@@ -1,4 +1,5 @@
 const axios = require('axios');
+const getVideogameDb = require('./getVideogamesDb');
 require('dotenv').config();
 const { apiKey } = process.env;
 
@@ -38,6 +39,10 @@ const getVideogames = async (ban = 'games') => {
             })
         })   
     }
+
+    let vgDB = await getVideogameDb();
+
+    videogames =  [...vgDB, ...videogames]
     return videogames;
 }
 

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom"
-import { GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH, SET_PAGES } from "../const"
-import img from '../../img/error.jpg'
+import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH, SET_PAGES } from "../const"
+import img from '../../img/videogames.jpg'
 
 
 const initialState = {
@@ -8,16 +8,17 @@ const initialState = {
     genres: [],
     findGames: [],
     gameDetail: {},
-    pages: {
-        start: 1,
-        end: 15
-    }
+    platforms: {}
 }
 
 export default function rootReducer(state = initialState, action){
     switch(action.type){
 
         case GET_VIDEOGAMES:
+            action.payload.map(res => {
+                if(res.created)
+                    res.image=img
+            })
             return {
                 ...state, videogames: [...action.payload]
             }
@@ -29,12 +30,17 @@ export default function rootReducer(state = initialState, action){
 
         case SEARCH:
             return {
-                ...state, findGames: action.payload
+                ...state, findGames: [...action.payload]
             }
 
         case GET_VIDEOGAMES_BY_ID:
             return {
                 ...state, gameDetail: action.payload
+            }
+        
+        case GET_PLATFORMS:
+            return {
+                ...state, platforms: [...action.payload]
             }
 
         default:

@@ -2,18 +2,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
-import { getVideogames, getVideogamesByName } from "../../redux/actions";
-import {  GET_VIDEOGAMES, SEARCH } from "../../redux/const";
+import { getVideogamesByName } from "../../redux/actions";
+import { SEARCH } from "../../redux/const";
 
 export default function SearchBar(props){
     let videogames = props.videogames
     const dispatch = useDispatch()
     const history = useHistory()
-    
 
     const genres = useSelector(state => state.genres)
-    
-
 
     function handleOnSelect(e, videogames){     
         let vg = []
@@ -82,12 +79,13 @@ export default function SearchBar(props){
                     <option value='Cualquier Genero'>Cualquier Genero</option>
                     {
                         genres.length && genres.map((gen, i) => (
-                            <option key={i} value={gen.name}>{gen.name}</option>
+                            <option key={i} value={gen}>{gen}</option>
                             ))
                     }
 
                 </select>  
-                <button onClick={handleOnAllGames}>Todos los Juegos</button>
+                <button onClick={handleOnAllGames}>Todos los Juegos</button> 
+             {/*    <input type='submit' value='todos los juegos'/> */}
             </form> 
     
         </div>

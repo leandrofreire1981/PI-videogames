@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogames } from '../../redux/actions';
-import OrderVideogames from '../OrderVideogames/Index';
-import Nav from '../nav/Index.jsx';
-import RenderPages from '../renderPages/Index';
-import SearchBar from '../SearchBar/Index';
+import OrderVideogames from '../OrderVideogames';
+import SearchBar from '../SearchBar';
 import { SEARCH } from '../../redux/const';
+import RenderPages from '../renderPages'
 
 
 export default function Home(){

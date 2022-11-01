@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getVideogameById } from "../../redux/actions"
 import { GET_VIDEOGAMES_BY_ID } from "../../redux/const"
-import Loading from "../Loading/Index"
+import Loading from "../Loading"
 import parser from 'html-react-parser'
 
 

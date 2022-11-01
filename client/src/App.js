@@ -2,11 +2,11 @@ import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 import './App.css';
 import CreateVideogame from './components/createVideogame';
-import GameDetail from './components/gameDetail/Index';
-import Home from './components/home/Index';
-import LandingPage from './components/landingPage/Index';
-import Nav from './components/nav/Index.jsx';
-import { getGenres } from './redux/actions';
+import GameDetail from './components/gameDetail';
+import Home from './components/home';
+import LandingPage from './components/landingPage';
+import Nav from './components/nav';
+import { getGenres, getPlatforms } from './redux/actions';
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
   const dispatch = useDispatch()
 
   dispatch(getGenres())
+  dispatch(getPlatforms())
 
   return (
     <div className="App">

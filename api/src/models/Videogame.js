@@ -14,7 +14,9 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      description: DataTypes.TEXT,
+    },
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
     released: {
@@ -22,10 +24,6 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.FLOAT,
-    },
-    platforms: {
-      type: DataTypes.STRING,
-      allowNull: false
     },
     created: {
       type: DataTypes.BOOLEAN,

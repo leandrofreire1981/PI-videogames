@@ -6,7 +6,7 @@ const getPlatforms = async () => {
     let pfDb = await Platform.findAll();
 
     if(pfDb.length > 0){
-        return pfDb
+        return pfDb.map(res => res.name)
     }
 
     let platforms =  await getVideogames('platforms')

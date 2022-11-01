@@ -1,7 +1,10 @@
+import { useRef } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loading from '../Loading'
 
 export default function Page(props){
-
+    console.log('page: ', props.image)
 
     if(!props.image)
         return(
@@ -10,7 +13,7 @@ export default function Page(props){
             </div>
         )
     return (
-        <div>
+        <div>s
             <div>
                 <Link to={`/videogames/${props.id}`}>
                     {props.name}

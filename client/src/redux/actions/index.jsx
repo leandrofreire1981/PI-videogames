@@ -1,4 +1,5 @@
-import { GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH } from "../const"
+import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH } from "../const"
+import img from '../../img/videogames.jpg'
 
 export function getVideogames(){
 
@@ -58,4 +59,34 @@ export function getVideogameById(id){
             })
             .catch(error => console.log(error))
     }
+}
+
+export function getPlatforms(){
+
+    return function(dispatch){
+        fetch('http://localhost:3001/platforms')
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: GET_PLATFORMS,
+                    payload: res
+                })
+            })
+    }
+}
+
+export function postVideogame(game){
+
+    fetch(`http://localhost:3001/post`, {
+        method: 'POST',
+        body: JSON.stringify(game),
+        headers: {
+            'Content-Type': 'application/json'
+            }
+    })
+       .then(res => res.json())
+        .catch(error => console.log(error))
+        .then(res => console.log(res))
+        alert('Videogame creado con exito')
+
 }

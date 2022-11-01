@@ -1,8 +1,9 @@
 
 import { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import Loading from "../Loading/Index";
-import Page from "../Page/Index";
+import Loading from "../Loading";
+import Page from "../Page";
+
 
 
 export default function RenderPages(props){
