@@ -25,6 +25,10 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.FLOAT,
     },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/pass/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg"
+    },
     created: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

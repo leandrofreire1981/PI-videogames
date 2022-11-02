@@ -1,5 +1,3 @@
-
-import { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Loading from "../Loading";
 import Page from "../Page";
@@ -9,7 +7,6 @@ import Page from "../Page";
 export default function RenderPages(props){
     const { videogames } = props
     let GAME_PAGE = 15
-    console.log('videogames', videogames.length)
     
     const location = useLocation()
     const history = useHistory()
@@ -21,7 +18,6 @@ export default function RenderPages(props){
     
  
     let renderVideogames = videogames.slice(start-1, end)
-    console.log('renderpages', renderVideogames)
     
     let pageCount = parseInt(videogames.length / GAME_PAGE)
     let buttonsPages = []

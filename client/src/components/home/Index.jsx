@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getVideogames } from '../../redux/actions';
 import OrderVideogames from '../OrderVideogames';
 import SearchBar from '../SearchBar';
-import { SEARCH } from '../../redux/const';
 import RenderPages from '../renderPages'
 
 
 export default function Home(){
-
     const dispatch = useDispatch();
-
+    
     const videogames = useSelector(state => state.videogames)
     const findGames = useSelector(state => state.findGames)
+    console.log('home: ', videogames)
     
     useEffect(() => {
         dispatch(getVideogames())

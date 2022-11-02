@@ -1,7 +1,4 @@
-import { useHistory } from "react-router-dom"
-import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH, SET_PAGES } from "../const"
-import img from '../../img/videogames.jpg'
-
+import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, SEARCH } from "../const"
 
 const initialState = {
     videogames: [],
@@ -15,10 +12,6 @@ export default function rootReducer(state = initialState, action){
     switch(action.type){
 
         case GET_VIDEOGAMES:
-            action.payload.map(res => {
-                if(res.created)
-                    res.image=img
-            })
             return {
                 ...state, videogames: [...action.payload]
             }

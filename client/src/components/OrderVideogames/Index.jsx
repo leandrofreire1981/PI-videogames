@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { GET_VIDEOGAMES, SEARCH } from "../../redux/const";
+import { useDispatch } from "react-redux";
+import { GET_VIDEOGAMES } from "../../redux/const";
 
 
 export default function OrderVideogames(props){
     let { videogames } = props;
 
     const dispatch = useDispatch()
-    const history = useHistory()
 
     function handleOrder(e){
         switch (e.target.name) {
@@ -25,6 +23,9 @@ export default function OrderVideogames(props){
 
             case 'menorRating':
                 videogames.sort((a, b) => a.rating - b.rating);
+                break;
+
+            default:
                 break;
         }
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const getPlatforms = require('../controllers/getPlatforms');
 
 const platformsRouter = express.Router();
 

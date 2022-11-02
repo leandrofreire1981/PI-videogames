@@ -19,10 +19,11 @@ export default function GameDetail(){
             type: GET_VIDEOGAMES_BY_ID,
             payload: {}
         })
-    }, [])
+    }, [dispatch, id])
     
     let vg = useSelector(state => state.gameDetail)
-   console.log('detalles: ', vg)
+
+    
     if(vg.image)
         return (
             <div>

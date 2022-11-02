@@ -54,6 +54,7 @@ export default function CreateVideogame(){
                 setInput({...input, released: ''})
                 e.target.value = 'dd / mm / aaaa'
             }
+            return;
         }
 
         if(e.target.name === 'rating'){
@@ -61,6 +62,7 @@ export default function CreateVideogame(){
                 setInput({...input, rating: e.target.value})
             else    
                 e.target.value = ''
+            return;
         }
         
         if(genres.includes(e.target.value) || platforms.includes(e.target.value)){

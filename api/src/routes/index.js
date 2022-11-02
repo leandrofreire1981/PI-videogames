@@ -8,6 +8,7 @@ const videogamesRouter = require('./videogamesRouter');
 const genresRouter = require('./genresRouter');
 const platformsRouter = require('./platformsRouter');
 const postRouter = require('./postRouter');
+const postVideogame = require('../controllers/postVideogame');
 
 const router = Router();
 

@@ -1,5 +1,4 @@
-import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, GET_VIDEOGAMES_BY_NAME, SEARCH } from "../const"
-import img from '../../img/videogames.jpg'
+import { GET_GENRES, GET_PLATFORMS, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID, SEARCH } from "../const"
 
 export function getVideogames(){
 
@@ -31,18 +30,18 @@ export function getGenres(){
     }
 }
 
-export function getVideogamesByName(name){
-
+export function getVideogamesByName(name, gamesFindedDb){
+    
     return function(dispatch){
         fetch(`http://localhost:3001/videogames?name=${name}`)
             .then(res => res.json())
             .then(res => {
                 dispatch({
                     type: SEARCH,
-                    payload: res
+                    payload: [...gamesFindedDb, ...res]
                 })
             }
-            ).catch(error => console.log(error))
+            ).catch(error => error)
     }
 }
 
@@ -52,12 +51,13 @@ export function getVideogameById(id){
         fetch(`http://localhost:3001/videogames/${id}`)
             .then(res => res.json())
             .then(res => {
+                console.log('actions: ', res)
                 dispatch({
                     type: GET_VIDEOGAMES_BY_ID,
                     payload: res
                 })
             })
-            .catch(error => console.log(error))
+            .catch(error => error)
     }
 }
 
@@ -85,8 +85,8 @@ export function postVideogame(game){
             }
     })
        .then(res => res.json())
-        .catch(error => console.log(error))
-        .then(res => console.log(res))
+        .catch(error =>error)
+        .then(res => res)
         alert('Videogame creado con exito')
 
 }
