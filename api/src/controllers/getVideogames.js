@@ -44,7 +44,7 @@ const getVideogames = async (ban = 'games') => {
     }
 
     let vgDB = await getVideogameDb();
-
+    
     videogames =  [...vgDB, ...videogames]
     return videogames;
 }
