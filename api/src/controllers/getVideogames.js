@@ -8,19 +8,19 @@ const getVideogames = async (ban = 'games') => {
     let games = [];
     let videogames = [];
 
-    games = await axios.get('http://localhost:3003/games')
-    games = [...games.data.results]  
+    //games = await axios.get('http://localhost:3003/games')
+    //games = [...games.data.results]  
    
 
     //Con promesas
-/*   games = await Promise.all([
+   games = await Promise.all([
         axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=${1}`),
         axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=${2}`),
         axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=${3}`),
         axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=${4}`),
         axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=${5}`)
     ]); 
-    games = games.map(res => res.data.results).flat()  */
+    games = games.map(res => res.data.results).flat()  
 
 
   
