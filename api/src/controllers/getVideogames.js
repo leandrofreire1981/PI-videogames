@@ -12,7 +12,7 @@ const getVideogames = async (ban = 'games') => {
     //games = [...games.data.results]  
 
 
-    
+
    
 
     //Con promesas
@@ -43,9 +43,9 @@ const getVideogames = async (ban = 'games') => {
         })   
     }
 
-    let vgDB = await getVideogameDb();
+   // let vgDB = await getVideogameDb();
 
-    videogames =  [...vgDB, ...videogames]
+   // videogames =  [...vgDB, ...videogames]
     return videogames;
 }
 
