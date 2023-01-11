@@ -10,6 +10,7 @@ const getVideogameById = async (id) => {
     let videogame
     if(id.length < 30){
         game = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`)
+        
         //const game = await axios.get(`http://localhost:3003/games/${id}`)
         videogame = {
             id: game.data.id,

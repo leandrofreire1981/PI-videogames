@@ -4,6 +4,7 @@ const { apiKey } = process.env;
 
 const getVideogameByName = async (name) => {
     const videogames = await axios.get(`https://api.rawg.io/api/games?key=${apiKey}&search=${name}`);
+    
     //const videogames = await axios.get('http://localhost:3003/simpsons');
     let vg = []
 

@@ -12,6 +12,7 @@ const getGenres = async () => {
         return genresDb.map(res => res.name)
     const genres = await axios.get(`https://api.rawg.io/api/genres?key=${apiKey}`)
     let gen = genres.data.results.map(res => res)
+    
     //let gen = await axios.get('http://localhost:3003/genres')
     //gen = gen.data.map((res) => {return res.name})
     //gen = gen.data.map((res) => res.name)

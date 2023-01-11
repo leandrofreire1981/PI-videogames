@@ -10,6 +10,9 @@ const getVideogames = async (ban = 'games') => {
 
     //games = await axios.get('http://localhost:3003/games')
     //games = [...games.data.results]  
+
+
+    
    
 
     //Con promesas
